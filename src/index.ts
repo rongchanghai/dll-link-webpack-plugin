@@ -112,6 +112,13 @@ export class DllLinkWebpackPlugin {
                 });
             if (publicPath) {
                 jsNames = jsNames.map(name => path.join(publicPath, name));
+                jsNames = jsNames.map(i=>{
+                    if(i.charAt(0)==='/' && i.charAt(1)!=='/'){
+                        return `/${i}`
+                    }else{
+                        return i
+                    }
+                })
             }
 
             const assets = htmlPluginData.assets as { js: string[] };
